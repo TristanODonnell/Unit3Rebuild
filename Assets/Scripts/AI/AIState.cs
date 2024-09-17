@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class AIState 
 {
     protected AIController controller;
-
     
+
     public abstract void OnStateEnter();
 
     public abstract void OnStateRun();
@@ -14,8 +14,9 @@ public abstract class AIState
     public abstract void OnStateExit();
 
     public AIState(AIController aiController)
-    { 
+    {
         controller = aiController;
-    
     }
+
+    
 }

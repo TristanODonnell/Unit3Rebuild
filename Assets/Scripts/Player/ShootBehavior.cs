@@ -28,7 +28,7 @@ public class ShootBehavior : MonoBehaviour
     {
         PooledObject pooledObj = bulletsPool.RetrievePoolObject();
         Rigidbody projectileClone = pooledObj.GetRigidbody();
-        projectileClone.position = weaponTip.position;
+         projectileClone.position = weaponTip.position;
          projectileClone.rotation = weaponTip.rotation;
          projectileClone.AddForce(myCamera.transform.forward * equippedWeapon.GetBulletSpeed(), ForceMode.Impulse);
 

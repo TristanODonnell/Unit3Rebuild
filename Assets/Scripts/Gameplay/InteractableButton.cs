@@ -7,9 +7,11 @@ using TMPro;
 public class InteractableButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private UnityEvent OnButtonPressed;
+    public UnityEvent OnKeyPickedUp;
     //[SerializeField] private Material highlightedMaterial;
 
     private Material originalMaterial;
+    [SerializeField] private Material unlockedMaterial;
     private MeshRenderer myRender;
     public TextMeshProUGUI openDoorString;
     private void Awake()
@@ -25,15 +27,7 @@ public class InteractableButton : MonoBehaviour, IInteractable
 
     public void OnHoverEnter()
     {
-        //myRender.material = highlightedMaterial;
-        //if (openDoorString != null)
-       // {
-       //     openDoorString.gameObject.SetActive(true); // Show the text
-       // }
-       // else
-       // {
-        //    Debug.LogWarning("openDoorString is not assigned.");
-        //}
+       
     
 
     }
@@ -41,14 +35,12 @@ public class InteractableButton : MonoBehaviour, IInteractable
     public void OnHoverExit()
     {
         myRender.material = originalMaterial;
-       /* if (openDoorString != null)
-        {
-            openDoorString.gameObject.SetActive(false); // Hide the text 
-        }
-        else 
-        {
-            Debug.LogWarning("openDoorString is not assigned.");
-        }
-       */
+      
+    }
+
+    public void KeyPickup()
+    {
+        Debug.Log("KeyPickup method called on InteractableButton");
+        myRender.material = unlockedMaterial;
     }
 }

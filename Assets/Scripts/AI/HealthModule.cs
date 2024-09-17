@@ -50,16 +50,18 @@ public class HealthModule : MonoBehaviour
         }
     }
 
+
+
     private void Die() 
     {
         isDead = true;
         if (gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            GameManager.Singleton.FailedLevel();
+           // GameManager.Singleton.FailedLevel();
         }
         else if (gameObject.layer == LayerMask.NameToLayer("Interactables"))
         {
-            GameManager.Singleton.FailedLevel();
+          //  GameManager.Singleton.FailedLevel();
         }
         else
         {

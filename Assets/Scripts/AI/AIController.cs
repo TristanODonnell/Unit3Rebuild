@@ -7,18 +7,21 @@ public class AIController : MonoBehaviour
 {
     private AIState currentState;
 
+
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform[] targets;
+    
    
 
     // Start is called before the first frame update
     void Start()
     {
-     
-       ChangeState(new PatrolState(this));
+        
+
+        ChangeState(new PatrolState(this));
        
     }
-
+     
     // Update is called once per frame
     void Update()
     {
@@ -59,6 +62,6 @@ public class AIController : MonoBehaviour
     {
         return agent;
     }
-        
 
+    
 }
