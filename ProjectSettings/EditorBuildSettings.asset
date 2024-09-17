@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Prefabs/StartScreen.unity
+    path: Assets/Scenes/StartScreen.unity
     guid: ba54b2b74018fd74db641a33520b2fc1
   - enabled: 1
-    path: Assets/PuzzleTest.unity
+    path: Assets/Scenes/PuzzleTest.unity
     guid: c7a7702b2593c7649979433daa065f34
   - enabled: 1
     path: Assets/FinishScreen.unity
     guid: 4795a17775f117c48a5b8626abf53273
+  - enabled: 1
+    path: Assets/Scenes/RestartGame.unity
+    guid: 2432ad2e5f2ddfb4e85c79deb0fcc44a
   m_configObjects: {}

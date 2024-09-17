@@ -7,32 +7,22 @@ public class AIController : MonoBehaviour
 {
     private AIState currentState;
 
-
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private Transform[] targets;
-    
-   
-
     // Start is called before the first frame update
     void Start()
     {
-        
-
         ChangeState(new PatrolState(this));
-       
     }
      
     // Update is called once per frame
     void Update()
     {
         // NO SIGHT OF PLAYER NOT CLOSE TO PLAYER 
-
         if(currentState != null)
-        
         {
            currentState.OnStateRun();
         }
- 
     }
 
     public void ChangeState(AIState state)
@@ -41,9 +31,7 @@ public class AIController : MonoBehaviour
         {
              currentState.OnStateExit();
         }
-       
         currentState = state;
-
         currentState.OnStateEnter();
     }
 
@@ -57,11 +45,8 @@ public class AIController : MonoBehaviour
         return targets.Length;
     }
 
-
     public NavMeshAgent GetAgent()
     {
         return agent;
     }
-
-    
 }

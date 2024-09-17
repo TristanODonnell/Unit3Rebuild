@@ -8,8 +8,6 @@ public class InteractableButton : MonoBehaviour, IInteractable
 {
     [SerializeField] private UnityEvent OnButtonPressed;
     public UnityEvent OnKeyPickedUp;
-    //[SerializeField] private Material highlightedMaterial;
-
     private Material originalMaterial;
     [SerializeField] private Material unlockedMaterial;
     private MeshRenderer myRender;
@@ -18,26 +16,19 @@ public class InteractableButton : MonoBehaviour, IInteractable
     {
         myRender = GetComponent<MeshRenderer>();
         originalMaterial = myRender.material;
-
     }
     public void Interact(PlayerInput player)
     {
         OnButtonPressed.Invoke();
     }
-
     public void OnHoverEnter()
     {
-       
-    
 
     }
-
     public void OnHoverExit()
     {
         myRender.material = originalMaterial;
-      
     }
-
     public void KeyPickup()
     {
         Debug.Log("KeyPickup method called on InteractableButton");

@@ -7,7 +7,6 @@ using UnityEngine;
 public class Spawn : MonoBehaviour
 {
     public GameObject spawnPoint;
-
     public void DestroySpawnPoint()
     {
         if (spawnPoint != null)

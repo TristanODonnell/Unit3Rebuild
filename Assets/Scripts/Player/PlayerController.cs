@@ -9,12 +9,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-      CheckJumpInput();
-       CheckShootInput();
-        
-        
+        CheckJumpInput();
+        CheckShootInput();
     }
-
     private void CheckShootInput()
     {
         if (shoot)
@@ -23,12 +20,11 @@ public class PlayerController : MonoBehaviour
             {
                 shoot.ShootWeapon();
             }
-        }         
+        }
     }
-
     private void CheckJumpInput()
     {
-       if(jump)
+        if (jump)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

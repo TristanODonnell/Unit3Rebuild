@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Shotgun
   damage: 40
-  bulletSpeed: 10
+  bulletSpeed: 8
   fireRate: 0.65
   weaponModel: {fileID: 1271266980968297685, guid: c5cf40f806b6f014b9bb3e334434ee33, type: 3}

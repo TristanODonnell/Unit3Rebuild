@@ -35,8 +35,6 @@ public class CommanderModule : MonoBehaviour
             Instantiate(guidancePoint, hit.point, Quaternion.identity);
             commands.Enqueue(new MoveCommand(minion, hit.point));
         }
-        
-
     }
 
 

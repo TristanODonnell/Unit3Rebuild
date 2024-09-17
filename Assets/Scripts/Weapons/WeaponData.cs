@@ -15,6 +15,5 @@ public class WeaponData : ScriptableObject
     public float GetFireRate() => fireRate;
     public float GetBulletSpeed() => bulletSpeed;
     public float GetDamage() => damage;
-
     public GameObject GetWeaponModel() => weaponModel;  
 }

@@ -8,33 +8,28 @@ public class PooledObject : MonoBehaviour
     private ObjectPool pool;
     private float resetTimer;
 
-    public Rigidbody GetRigidbody() 
-    
+    public Rigidbody GetRigidbody()
     { return rb; }
     public void LinkPooledObject(ObjectPool linkPool)
-
     {
         pool = linkPool;
     }
-
     public void ResetPooledObject()
     {
         rb.velocity = Vector3.zero;
+        transform.position = Vector3.zero;
         pool.SendBackToPool(this);
-        
     }
-
     public void ResetPooledObject(float timer)
     {
         Invoke("ResetPooledObject", timer);
     }
-
     private void Update()
     {
-        if(resetTimer > 0)
+        if (resetTimer > 0)
         {
             resetTimer -= Time.deltaTime;
-            if(resetTimer <= 0)
+            if (resetTimer <= 0)
             {
                 ResetPooledObject();
             }

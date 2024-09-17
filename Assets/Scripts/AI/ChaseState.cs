@@ -9,12 +9,10 @@ public class ChaseState : AIState
     {
       
     }
-
     public override void OnStateExit()
     {
 
     }
-
     public override void OnStateRun()
     {
         controller.GetAgent().SetDestination(target.position);
@@ -23,7 +21,6 @@ public class ChaseState : AIState
             controller.ChangeState(new AttackState(target, controller));
         }
     }
-
     public ChaseState(Transform newTarget, AIController con) : base(con)
     {
         controller = con;

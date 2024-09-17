@@ -11,7 +11,7 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] private List<PooledObject> unavailableObjects = new List<PooledObject>();
     private void Awake()
     {
-        for(int i= 0; i < poolSize; i++)
+        for (int i = 0; i < poolSize; i++)
         {
             PooledObject tempObject = Instantiate(pooledObject, transform);
             tempObject.gameObject.SetActive(false);
@@ -19,8 +19,6 @@ public class ObjectPool : MonoBehaviour
             availableObjects.Add(tempObject);
         }
     }
-
-
     public PooledObject RetrievePoolObject()
     {
         PooledObject tempObject = availableObjects[0];
@@ -28,9 +26,7 @@ public class ObjectPool : MonoBehaviour
         tempObject.gameObject.SetActive(true);
         unavailableObjects.Add(tempObject);
         return tempObject;
-
     }
-
     public void SendBackToPool(PooledObject obj)
     {
         obj.gameObject.SetActive(false);

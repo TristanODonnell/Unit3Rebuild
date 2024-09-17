@@ -10,7 +10,7 @@ public class TurretController : MonoBehaviour
 {
     public Transform player;
     [SerializeField] private float radius;
-    public float laserDistance = 50f ;
+    public float laserDistance = 50f;
     public LineRenderer lineRenderer;
     public LayerMask layerMask;
     public Transform shootPoint;
@@ -19,32 +19,24 @@ public class TurretController : MonoBehaviour
     private TurretState currentState;
     private TurretIdleState idleState;
     private TurretAttackState attackState;
-
     private void Start()
     {
         idleState = new TurretIdleState(this);
-        
         currentState = idleState;
         currentState.OnStateEnter();
-
 
         lineRenderer.enabled = true;
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, shootPoint.position);
         lineRenderer.SetPosition(1, shootPoint.position + shootPoint.forward * laserDistance);
     }
-
     private void Update()
     {
         if (currentState != null)
-
         {
             currentState.OnStateRun();
         }
     }
-
-
-  
     public void SwitchState(TurretState newState)
     {
         if (currentState != null)
@@ -55,39 +47,30 @@ public class TurretController : MonoBehaviour
         currentState.OnStateEnter();
         Debug.Log($"Switching from {currentState.GetType().Name} to {newState.GetType().Name}");
     }
-
-     
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player inside trigger");
-            
             SetTarget(other.transform);
         }
     }
-
     public void SetTarget(Transform target)
     {
         currentTarget = target;
         SwitchState(new TurretAttackState(this, currentTarget));
-
     }
-
-
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("left trigger");
-            SwitchState(idleState); //switch back to idle state 
-        
+        SwitchState(idleState); //switch back to idle state 
     }
-
     public void ShootLaser(Transform currentTarget)
     {
         RaycastHit hit;
         RaycastHit hit2;
         float distance = laserDistance;
-        
+
         if (Physics.SphereCast(shootPoint.position, radius, transform.forward, out hit, distance, layerMask))
         {
             lineRenderer.SetPosition(0, shootPoint.position);
@@ -97,7 +80,7 @@ public class TurretController : MonoBehaviour
                 Debug.Log("Did Hit" + hit2.collider.name);
                 lineRenderer.SetPosition(0, shootPoint.position);
                 lineRenderer.SetPosition(1, hit2.point);
-                if (hit2.transform == currentTarget) 
+                if (hit2.transform == currentTarget)
                 {
                     HealthModule targetHealthModule = currentTarget.GetComponent<HealthModule>();
                     if (targetHealthModule != null)
@@ -106,7 +89,6 @@ public class TurretController : MonoBehaviour
                     }
                 }
             }
-            
         }
         else
         {
@@ -118,7 +100,6 @@ public class TurretController : MonoBehaviour
     {
         lineRenderer.enabled = false;
     }
-
     public void EnableLaser()
     {
         lineRenderer.enabled = true;

@@ -7,16 +7,15 @@ public class PatrolState : AIState
 {
     private int waypointIndex;
     private float distanceToStop;
+
     public override void OnStateEnter()
     {
         controller.GetAgent().SetDestination(controller.GetWaypoint(waypointIndex).position);
     }
-
     public override void OnStateExit()
     {
-    
-    }
 
+    }
     public override void OnStateRun()
     {
         if (controller.GetAgent().remainingDistance < distanceToStop)
@@ -29,8 +28,6 @@ public class PatrolState : AIState
             controller.GetAgent().SetDestination(controller.GetWaypoint(waypointIndex).position);
         }
     }
-
-
     public PatrolState(AIController con) : base(con)
     {
         controller = con;

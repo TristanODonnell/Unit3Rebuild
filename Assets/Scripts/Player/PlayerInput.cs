@@ -6,8 +6,6 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    
-
     [SerializeField] private ObjectPool bulletsPool;
 
     [Header("Shooting Settings")]
@@ -15,7 +13,8 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float projectileSpeed;
     [SerializeField] private Rigidbody projectile;
     [SerializeField] private Transform weaponTip;
-    
+
+    [Header("Camera")]
     [SerializeField] private Camera myCamera;
 
     [Header("Interaction Settings")]
@@ -31,26 +30,21 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float lookSensitivity;
     [SerializeField] private LayerMask layerFilter;
 
-
     [Header("Other Modules")]
     [SerializeField] private CommanderModule commanderModule;
     [SerializeField] private HealthModule healthModule;
 
     private IInteractable selectedInteraction;
-    private GameObject carriedBox;
     private Vector3 velocity;
     private const float gravity = -9.81f;
     private Vector3 moveDirection;
     private Vector2 lookDirection;
 
-
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-    }   
-
-   
+    }
     void Update()
     {
         MovePlayer();
@@ -61,22 +55,22 @@ public class PlayerInput : MonoBehaviour
         Interact();
         ChangeWeapon();
         SendCommand();
-        
+
     }
     private void SendCommand()
     {
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1))
         {
             commanderModule.CreateCommand();
         }
     }
     private void ChangeWeapon()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            shootBehavior.ChangeWeapon(0);       
+            shootBehavior.ChangeWeapon(0);
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             shootBehavior.ChangeWeapon(1);
         }
@@ -97,100 +91,69 @@ public class PlayerInput : MonoBehaviour
                 selectedInteraction = hit.collider.gameObject.GetComponent<IInteractable>();
                 selectedInteraction.OnHoverEnter();
             }
-            
             if (Input.GetKeyDown(KeyCode.E))
             {
-
-                selectedInteraction.Interact(this); 
-                
-                
-
+                selectedInteraction.Interact(this);
             }
         }
-        else if(selectedInteraction != null)
+        else if (selectedInteraction != null)
         {
             selectedInteraction.OnHoverExit();
             selectedInteraction = null;
         }
-        
     }
-
-   
-
     void ShootWeapon()
     {
-    if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             shootBehavior.ShootWeapon();
-           // PooledObject pooledObj = bulletsPool.RetrievePoolObject();
-           // Rigidbody projectileClone = pooledObj.GetRigidbody();
-           // projectileClone.position = weaponTip.position;
-          //  projectileClone.rotation = weaponTip.rotation;
-           /// projectileClone.AddForce(myCamera.transform.forward * projectileSpeed, ForceMode.Impulse);
-           // pooledObj.ResetPooledObject(4F);
         }
     }
-
     bool IsGrounded()
     {
         return Physics.CheckSphere(transform.position, controller.radius, layerFilter);
     }
-
     void GravityCalculation()
     {
-        
         if (!IsGrounded())
         {
-
             velocity.y += gravity * Time.deltaTime;
         }
-        else if(velocity.y <= 0)
+        else if (velocity.y <= 0)
         {
             velocity.y = -1f;
         }
-       
-
         controller.Move(velocity * Time.deltaTime);
     }
-
     void JumpPlayer()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded()) 
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             velocity.y = jumpForce;
         }
     }
-
     void MovePlayer()
     {
         moveDirection.x = Input.GetAxisRaw("Horizontal");
         moveDirection.z = Input.GetAxisRaw("Vertical");
-
         Vector3 moveForward = transform.forward * moveDirection.z;
         Vector3 moveRight = transform.right * moveDirection.x;
-
         float speedMultiplier = 1;
-
         if (Input.GetKey(KeyCode.LeftShift))
         {
             speedMultiplier = sprintMultiplier;
         }
-
         controller.Move((moveForward + moveRight) * Time.deltaTime * speed * speedMultiplier);
     }
-
     void RotatePlayer()
     {
         lookDirection.x += Input.GetAxisRaw("Mouse X") * Time.deltaTime * lookSensitivity;
         lookDirection.y += Input.GetAxisRaw("Mouse Y") * Time.deltaTime * lookSensitivity;
-
-
         lookDirection.y = Mathf.Clamp(lookDirection.y, -85f, 85f);
 
         myCamera.transform.localRotation = Quaternion.Euler(-lookDirection.y, 0, 0);
         transform.rotation = Quaternion.Euler(0, lookDirection.x, 0);
     }
-
     public Rigidbody GetPlayerRigidBody()
     {
         return playerRigidbody;

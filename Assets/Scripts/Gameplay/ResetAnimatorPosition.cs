@@ -11,7 +11,6 @@ public class ResetAnimatorPosition : MonoBehaviour
     {
         animator = GetComponent<Animator>();
     }
-
     public void ResetPositionToSpecific()
     {
         transform.position = resetPosition; // Reset position to specified resetPosition

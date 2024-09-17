@@ -11,7 +11,7 @@ public class PuzzleRoom : MonoBehaviour
     [SerializeField] private bool isPuzzleFailed = false;
     private PuzzleController puzzleController;
     [SerializeField] private List<GameObject> objectiveObjects;
-    
+
     public UnityEvent OnPuzzleStart;
     public UnityEvent OnPuzzleFinish;
     public UnityEvent OnPlayerRespawn;
@@ -21,19 +21,8 @@ public class PuzzleRoom : MonoBehaviour
     public void InitializeRoom(PuzzleController controller)
     {
         puzzleController = controller;
-        //allPieces = GetComponentsInChildren<IPuzzlePiece>();
-            
-       
-      
-    }
-    private void Update()
-    {
-       
     }
 
-
-
-     
     //public void CheckRoomStatus() //SHOULD RUN EVERYTIME PIECE GETS UPDATED (PressurePlate OnActive())
     //  {
     //     //foreach (IPuzzlePiece piece in allPieces)
@@ -46,28 +35,22 @@ public class PuzzleRoom : MonoBehaviour
     //        Debug.Log("ALL REQUIREMENTS MET");
     //    }
     //  }
-
     public void PuzzleEnter()
     {
         OnPuzzleStart?.Invoke();
         Debug.Log("player entered the room");
     }
-
     public void PuzzleExit()
     {
         OnPuzzleFinish?.Invoke();
         Debug.Log("player exited the room");
     }
-
     public void PlayerRespawned()
     {
         OnPlayerRespawn?.Invoke();
     }
-
     private void OnTriggerEnter(Collider other)
     {
         puzzleController.ChangePuzzleRoom(this);
     }
-
-    
 }

@@ -12,38 +12,28 @@ public class Pickable : MonoBehaviour, IInteractable
     {
         if (transform.parent == null)
         {
-
-
             transform.position = player.GetPickUpLocation().position;
-
-
             transform.SetParent(player.GetPickUpLocation());
 
             myRigidbody.useGravity = false;
             myRigidbody.isKinematic = true;
         }
-
         else
         {
-
             transform.SetParent(null);
             myRigidbody.useGravity = true;
             myRigidbody.isKinematic = false;
         }
 
     }
-
-
     public void OnHoverEnter()
     {
 
     }
-
     public void OnHoverExit()
     {
 
     }
-     
     public void DropBox()
     {
         transform.SetParent(null);
@@ -51,4 +41,3 @@ public class Pickable : MonoBehaviour, IInteractable
         myRigidbody.isKinematic = false;
     }
 }
- 

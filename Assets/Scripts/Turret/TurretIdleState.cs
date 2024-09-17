@@ -6,27 +6,16 @@ public class TurretIdleState : TurretState
 {
     public TurretIdleState(TurretController turretController) : base(turretController) { }
 
-    public override void OnStateEnter() 
-    
+    public override void OnStateEnter()
     {
-
         turretController.EnableLaser();
     }
-
-    public override void OnStateExit() 
-
+    public override void OnStateExit()
     {
-       // turretController.EnableLaser();
-       
-    }
 
+    }
     public override void OnStateRun()
     {
-       
 
-        //DO IDLE STATE HERE 
-       // turretController.DisableLaser();
-        
     }
 }
- 

@@ -122,7 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lavaLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 384
   damageAmount: 25
   damageInterval: 1
 --- !u!65 &8581252237023962056

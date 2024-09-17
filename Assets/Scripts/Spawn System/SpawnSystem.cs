@@ -20,46 +20,31 @@ public class SpawnSystem : MonoBehaviour
     {
         Transform respawnPoint = GetSpawnPoint(0);
         InstantiatePlayer(playerPrefab, respawnPoint);
-       
-    }
-
-    private void Update()     
-    {
-        
     }
     private void InstantiatePlayer(GameObject playerPrefab, Transform respawnPoint)
     {
         if (playerPrefab != null)
         {
-
-
             if (playerInstance != null)
             {
                 Destroy(playerInstance); // Destroy existing player instance if any
             }
-
             playerInstance = Instantiate(playerPrefab, respawnPoint.position, respawnPoint.rotation);
             Debug.Log("Player instantiated at: " + respawnPoint.position);
-
-            
         }
     }
+
     public void PlayerDied()
    {
    //     RespawnPlayer();
   }
-
-    
-
     /* public void RespawnPlayer()
      {
          int lastEnteredIndex = GetLastEnteredPuzzleIndex();
          Transform respawnPoint = GetSpawnPoint(lastEnteredIndex); //get respawn point 
-
          if (respawnPoint != null)
          {
              if (playerInstance == null)
-
              {
                  InstantiatePlayer(playerPrefab, respawnPoint);
                  Debug.Log($"Player respawned at: {respawnPoint.position}");
@@ -70,7 +55,6 @@ public class SpawnSystem : MonoBehaviour
                      currentRoom.PlayerRespawned();
                  }
              }
-
          }
      }
     
@@ -86,12 +70,10 @@ public class SpawnSystem : MonoBehaviour
             return transform; // Fallback to GameManager's own position if index is invalid
         }
     }
-
     public void SetLastEnteredPuzzleIndex(int index)
     {
         lastEnteredPuzzleIndex = index;
     }
-
     public int GetLastEnteredPuzzleIndex()
     {
         return lastEnteredPuzzleIndex;

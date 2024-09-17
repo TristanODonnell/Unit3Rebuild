@@ -5,16 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class StartGameButton : MonoBehaviour
 {
-
     public string gameSceneName = "PuzzleTest";
-    // Start is called before the first frame update
-   public GameManager gameManager;
-
-        public void StartGame()
+    
+    public void OnClick()
     {
-        //GameManager.Singleton.LoadScene(gameSceneName); SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(gameSceneName);
+        GameManager.Singleton.StartLevel();
     }
-
 
 }
  
